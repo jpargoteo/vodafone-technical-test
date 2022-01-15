@@ -1,0 +1,17 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+left to right direction
+
+(<<UC-001>> Update status device) as (UC-001)
+(<<UC-002>> Remove status device) as (UC-002)
+(<<UC-003>> Get all available devices) as (UC-003)
+(<<UC-004>> Get all waiting for activation devices) as (UC-004)
+
+Manager -> (UC-001)
+Manager -> (UC-002)
+Consumer -> (UC-003)
+Consumer -> (UC-004)
+
+note right of (UC-004) : The result should be ordered.
+
+@enduml
