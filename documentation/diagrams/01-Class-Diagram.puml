@@ -1,0 +1,32 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+class Device {
+Sim simCard
+Status status
+Double temperature
+}
+
+class Sim {
+UUID id
+UUID operatorCode
+String countryName
+SimStatus status
+}
+
+enum Status {
+NOT_READY
+READY
+}
+
+enum SimStatus {
+ACTIVE
+BLOCKED
+DEACTIVATED
+WAITING_FOR_ACTIVATION
+}
+
+Device "1" *--"0..1" Sim : has
+
+@enduml
