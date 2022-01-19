@@ -6,23 +6,18 @@ import lombok.*;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
-import java.util.UUID;
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-@JsonRootName(value = "device")
-@Relation(collectionRelation = "devices")
+@JsonRootName(value = "sim")
+@Relation(collectionRelation = "sims")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class DeviceModel extends RepresentationModel<DeviceModel> {
+public class SimModel extends RepresentationModel<SimModel> {
 
-    // Attributes
     private String id;
+    private String operatorCode;
+    private String countryName;
     private String status;
-    private String temperature;
-
-    //Relationships
-    private SimModel sim;
 }
