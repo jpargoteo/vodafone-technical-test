@@ -3,6 +3,7 @@
 
 
 class Device {
+UUID id
 Sim simCard
 Status status
 Double temperature
