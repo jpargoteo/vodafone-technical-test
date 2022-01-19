@@ -17,7 +17,7 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>devices-svc-ms</artifactId>
+            <artifactId>devices-svc-ws</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
