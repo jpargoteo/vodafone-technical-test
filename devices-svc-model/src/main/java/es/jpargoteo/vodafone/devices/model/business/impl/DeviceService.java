@@ -44,19 +44,23 @@ public class DeviceService implements IDeviceService {
      * {@inheritDoc}
      */
     @Override
-    public int removeConfiguration(UUID id) {
+    public Device removeConfiguration(UUID id) {
 
         Assert.notNull(id, "The given device id cannot be null.");
         Assert.isTrue(deviceRepository.existsById(id), "There should exist a Device for the given id.");
 
         deviceRepository.removeConfiguration(id);
 
-        if (null != deviceRepository.findById(id) && null != deviceRepository.findById(id).get().getSim()) {
+        return deviceRepository.findById(id).get();
+    }
 
-            return -1;
-        }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Device one(UUID id) {
 
-        return 0;
+        return deviceRepository.findById(id).orElse(null);
     }
 
     /**
