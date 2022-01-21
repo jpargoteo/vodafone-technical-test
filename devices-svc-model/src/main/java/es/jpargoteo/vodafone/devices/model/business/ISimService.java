@@ -13,34 +13,34 @@ public interface ISimService {
     /**
      * Method that given the id for a {@link Sim} activates it.
      *
-     * @param id - {@link UUID} of the Sim to be activated.
+     * @param id - {@link Integer} of the Sim to be activated.
      * @return - An int object. 0 for successful execution, -1 for an unsuccessful execution.
      */
-    Sim activate(UUID id);
+    Sim activate(Integer id);
 
     /**
      * Method that given the id for a {@link Sim} blocks it.
      *
-     * @param id - {@link UUID} of the Sim to be blocked.
+     * @param id - {@link Integer} of the Sim to be blocked.
      * @return - An int object. 0 for successful execution, -1 for an unsuccessful execution.
      */
-    Sim block(UUID id);
+    Sim block(Integer id);
 
     /**
      * Method that given the id for a {@link Sim} deactivates it.
      *
-     * @param id - {@link UUID} of the Sim to be deactivated.
+     * @param id - {@link Integer} of the Sim to be deactivated.
      * @return - An int object. 0 for successful execution, -1 for an unsuccessful execution.
      */
-    Sim deactivate(UUID id);
+    Sim deactivate(Integer id);
 
     /**
      * Method that given the id for a {@link Sim} sets it on waiting status for activation.
      *
-     * @param id - {@link UUID} of the Sim to be set on waiting status.
+     * @param id - {@link Integer} of the Sim to be set on waiting status.
      * @return - An int object. 0 for successful execution, -1 for an unsuccessful execution.
      */
-    Sim waitForActivation(UUID id);
+    Sim waitForActivation(Integer id);
 
     /**
      * Method that given a {@link Sim} persists it.

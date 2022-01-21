@@ -11,17 +11,15 @@ import java.util.UUID;
  */
 @Data
 @Entity
+@Access(AccessType.PROPERTY)
 @Table(name = "SIM")
 public class Sim {
 
     // Attributes
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator")
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "id", updatable = false, nullable = false)
-    private UUID id;
+    private int id;
     private String operatorCode;
     private String countryName;
     private SimStatus status;

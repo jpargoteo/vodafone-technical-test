@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestClientException;
 
-import java.util.UUID;
-
 /**
  * Class that provides the API's for managing devices.
  */
@@ -74,10 +72,10 @@ public class DeviceController {
      * @param id - The id of the device.
      * @return - The resultant device representation.
      */
-    @PostMapping("/devices/{id}/remove-configuration")
+    @PostMapping("/mng/devices/{id}/remove-configuration")
     public ResponseEntity<DeviceModel> removeConfiguration(String id) {
 
-        return ResponseEntity.ok(deviceAssembler.toModel(deviceService.removeConfiguration(UUID.fromString(id))));
+        return ResponseEntity.ok(deviceAssembler.toModel(deviceService.removeConfiguration(Integer.getInteger(id))));
     }
 
     /**
@@ -86,12 +84,12 @@ public class DeviceController {
      * @param id - The id of the device.
      * @return - The resultant device representation.
      */
-    @PostMapping("/devices/{id}/sim/activate")
+    @PostMapping("/mng/devices/{id}/sim/activate")
     public ResponseEntity<DeviceModel> activateSim(String id) {
 
         try {
 
-            Device device = deviceService.one(UUID.fromString(id));
+            Device device = deviceService.one(Integer.getInteger(id));
 
             if (device != null && device.getSim() != null) {
 
@@ -126,12 +124,12 @@ public class DeviceController {
      * @param id - The id of the device.
      * @return - The resultant device representation.
      */
-    @PostMapping("/devices/{id}/sim/deactivate")
+    @PostMapping("/mng/devices/{id}/sim/deactivate")
     public ResponseEntity<DeviceModel> deactivateSim(String id) {
 
         try {
 
-            Device device = deviceService.one(UUID.fromString(id));
+            Device device = deviceService.one(Integer.getInteger(id));
 
             if (device != null && device.getSim() != null) {
 
@@ -166,12 +164,12 @@ public class DeviceController {
      * @param id - The id of the device.
      * @return - The resultant device representation.
      */
-    @PostMapping("/devices/{id}/sim/block")
+    @PostMapping("/mng/devices/{id}/sim/block")
     public ResponseEntity<DeviceModel> blockSim(String id) {
 
         try {
 
-            Device device = deviceService.one(UUID.fromString(id));
+            Device device = deviceService.one(Integer.getInteger(id));
 
             if (device != null && device.getSim() != null) {
 
@@ -206,12 +204,12 @@ public class DeviceController {
      * @param id - The id of the device.
      * @return - The resultant device representation.
      */
-    @PostMapping("/devices/{id}/sim/waiting-activation")
+    @PostMapping("/mng/devices/{id}/sim/waiting-activation")
     public ResponseEntity<DeviceModel> setWaitingActivationSim(String id) {
 
         try {
 
-            Device device = deviceService.one(UUID.fromString(id));
+            Device device = deviceService.one(Integer.getInteger(id));
 
             if (device != null && device.getSim() != null) {
 

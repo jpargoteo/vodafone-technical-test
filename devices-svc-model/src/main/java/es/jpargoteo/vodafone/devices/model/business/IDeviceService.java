@@ -28,20 +28,20 @@ public interface IDeviceService {
     Page<Device> allAvailable(Pageable pageable);
 
     /**
-     * Method that given an {@link UUID} id removes the configuration from a {@link Device}.
+     * Method that given an {@link Integer} id removes the configuration from a {@link Device}.
      *
-     * @param id - The given {@link UUID} of a device.
+     * @param id - The given {@link Integer} of a device.
      * @return - The modified {@link Device}
      */
-    Device removeConfiguration(UUID id);
+    Device removeConfiguration(Integer id);
 
     /**
-     * Method that given an {@link UUID} id returns a {@link Device} entity.
+     * Method that given an {@link Integer} id returns a {@link Device} entity.
      *
-     * @param id - The given {@link UUID} of a device.
+     * @param id - The given {@link Integer} of a device.
      * @return - The modified {@link Device}.
      */
-    Device one(UUID id);
+    Device one(Integer id);
 
     /**
      * Method that given a {@link Device} persists it.

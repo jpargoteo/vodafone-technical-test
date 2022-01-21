@@ -39,7 +39,7 @@ public class DeviceAssembler extends RepresentationModelAssemblerSupport<Device,
 
         deviceModel.add(linkTo(methodOn(DeviceController.class).available(null)).withSelfRel());
 
-        deviceModel.setId(entity.getId().toString());
+        deviceModel.setId(String.valueOf(entity.getId()));
         deviceModel.setStatus(entity.getStatus().toString());
         deviceModel.setTemperature(String.valueOf(entity.getTemperature()));
         deviceModel.setSim(toSimModel(entity.getSim()));
@@ -78,7 +78,7 @@ public class DeviceAssembler extends RepresentationModelAssemblerSupport<Device,
 
         return SimModel
                 .builder()
-                .id(entity.getId().toString())
+                .id(String.valueOf(entity.getId()))
                 .countryName(entity.getCountryName())
                 .operatorCode(entity.getOperatorCode())
                 .status(entity.getStatus().toString())
