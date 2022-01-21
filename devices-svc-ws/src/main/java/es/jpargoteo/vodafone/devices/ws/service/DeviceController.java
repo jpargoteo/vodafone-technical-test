@@ -10,9 +10,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestClientException;
 
 /**
  * Class that provides the API's for managing devices.
@@ -73,7 +73,7 @@ public class DeviceController {
      * @return - The resultant device representation.
      */
     @PostMapping("/mng/devices/{id}/remove-configuration")
-    public ResponseEntity<DeviceModel> removeConfiguration(String id) {
+    public ResponseEntity<DeviceModel> removeConfiguration(@PathVariable String id) {
 
         return ResponseEntity.ok(deviceAssembler.toModel(deviceService.removeConfiguration(Integer.getInteger(id))));
     }
@@ -85,7 +85,7 @@ public class DeviceController {
      * @return - The resultant device representation.
      */
     @PostMapping("/mng/devices/{id}/sim/activate")
-    public ResponseEntity<DeviceModel> activateSim(String id) {
+    public ResponseEntity<DeviceModel> activateSim(@PathVariable String id) {
 
         try {
 
@@ -100,21 +100,15 @@ public class DeviceController {
                 return ResponseEntity.ok(deviceAssembler.toModel(device));
             } else {
 
-                // Todo: improve to send a bad request
-
-                throw new RestClientException("bad request error");
+                return ResponseEntity.badRequest().build();
             }
 
         } catch (IllegalArgumentException e) {
 
-            // Todo: improve to send a bad request
-
-            throw new RestClientException("bad request error");
+            return ResponseEntity.badRequest().build();
         } catch (Exception e) {
 
-            // Todo: improve to send a bad request
-
-            throw new RestClientException("unexpected error");
+            return ResponseEntity.internalServerError().build();
         }
     }
 
@@ -125,7 +119,7 @@ public class DeviceController {
      * @return - The resultant device representation.
      */
     @PostMapping("/mng/devices/{id}/sim/deactivate")
-    public ResponseEntity<DeviceModel> deactivateSim(String id) {
+    public ResponseEntity<DeviceModel> deactivateSim(@PathVariable String id) {
 
         try {
 
@@ -140,21 +134,15 @@ public class DeviceController {
                 return ResponseEntity.ok(deviceAssembler.toModel(device));
             } else {
 
-                // Todo: improve to send a bad request
-
-                throw new RestClientException("bad request error");
+                return ResponseEntity.badRequest().build();
             }
 
         } catch (IllegalArgumentException e) {
 
-            // Todo: improve to send a bad request
-
-            throw new RestClientException("bad request error");
+            return ResponseEntity.badRequest().build();
         } catch (Exception e) {
 
-            // Todo: improve to send a bad request
-
-            throw new RestClientException("unexpected error");
+            return ResponseEntity.internalServerError().build();
         }
     }
 
@@ -165,7 +153,7 @@ public class DeviceController {
      * @return - The resultant device representation.
      */
     @PostMapping("/mng/devices/{id}/sim/block")
-    public ResponseEntity<DeviceModel> blockSim(String id) {
+    public ResponseEntity<DeviceModel> blockSim(@PathVariable String id) {
 
         try {
 
@@ -180,21 +168,15 @@ public class DeviceController {
                 return ResponseEntity.ok(deviceAssembler.toModel(device));
             } else {
 
-                // Todo: improve to send a bad request
-
-                throw new RestClientException("bad request error");
+                return ResponseEntity.badRequest().build();
             }
 
         } catch (IllegalArgumentException e) {
 
-            // Todo: improve to send a bad request
-
-            throw new RestClientException("bad request error");
+            return ResponseEntity.badRequest().build();
         } catch (Exception e) {
 
-            // Todo: improve to send a bad request
-
-            throw new RestClientException("unexpected error");
+            return ResponseEntity.internalServerError().build();
         }
     }
 
@@ -205,7 +187,7 @@ public class DeviceController {
      * @return - The resultant device representation.
      */
     @PostMapping("/mng/devices/{id}/sim/waiting-activation")
-    public ResponseEntity<DeviceModel> setWaitingActivationSim(String id) {
+    public ResponseEntity<DeviceModel> setWaitingActivationSim(@PathVariable String id) {
 
         try {
 
@@ -220,21 +202,15 @@ public class DeviceController {
                 return ResponseEntity.ok(deviceAssembler.toModel(device));
             } else {
 
-                // Todo: improve to send a bad request
-
-                throw new RestClientException("bad request error");
+                return ResponseEntity.badRequest().build();
             }
 
         } catch (IllegalArgumentException e) {
 
-            // Todo: improve to send a bad request
-
-            throw new RestClientException("bad request error");
+            return ResponseEntity.badRequest().build();
         } catch (Exception e) {
 
-            // Todo: improve to send a bad request
-
-            throw new RestClientException("unexpected error");
+            return ResponseEntity.internalServerError().build();
         }
     }
 }
