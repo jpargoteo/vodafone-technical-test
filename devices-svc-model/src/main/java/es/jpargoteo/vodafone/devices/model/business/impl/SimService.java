@@ -3,7 +3,6 @@ package es.jpargoteo.vodafone.devices.model.business.impl;
 import es.jpargoteo.vodafone.devices.model.business.ISimService;
 import es.jpargoteo.vodafone.devices.model.domain.Sim;
 import es.jpargoteo.vodafone.devices.model.repository.SimRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -20,6 +19,7 @@ public class SimService implements ISimService {
 
     /**
      * Constructor for instantiate a {@link SimService}.
+     *
      * @param simRepository - {@link SimRepository} to be used for data access.
      */
     public SimService(SimRepository simRepository) {
@@ -30,36 +30,48 @@ public class SimService implements ISimService {
      * {@inheritDoc}
      */
     @Override
-    public int activate(UUID id) {
+    public Sim activate(UUID id) {
 
         Assert.notNull(id, "The given id cannot be null.");
         Assert.isTrue(simRepository.existsById(id), "There should exist a Sim for the given id.");
 
-        return 0;
+        return simRepository.activate(id);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public int block(UUID id) {
-        return 0;
+    public Sim block(UUID id) {
+
+        Assert.notNull(id, "The given id cannot be null.");
+        Assert.isTrue(simRepository.existsById(id), "There should exist a Sim for the given id.");
+
+        return simRepository.block(id);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public int deactivate(UUID id) {
-        return 0;
+    public Sim deactivate(UUID id) {
+
+        Assert.notNull(id, "The given id cannot be null.");
+        Assert.isTrue(simRepository.existsById(id), "There should exist a Sim for the given id.");
+
+        return simRepository.deactivate(id);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public int waitForActivation(UUID id) {
-        return 0;
+    public Sim waitForActivation(UUID id) {
+
+        Assert.notNull(id, "The given id cannot be null.");
+        Assert.isTrue(simRepository.existsById(id), "There should exist a Sim for the given id.");
+
+        return simRepository.waitForActivation(id);
     }
 
     /**

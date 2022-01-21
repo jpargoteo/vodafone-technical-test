@@ -6,6 +6,9 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.UUID;
 
+/**
+ * Class that describes a device object.
+ */
 @Data
 @Entity
 @Table(name = "DEVICE")

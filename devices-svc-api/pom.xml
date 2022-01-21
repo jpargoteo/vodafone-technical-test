@@ -15,7 +15,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <spring-doc-opeanpi-ui-version>1.4.8</spring-doc-opeanpi-ui-version>
+        <spring-doc-opeanpi-ui-version>1.6.4</spring-doc-opeanpi-ui-version>
     </properties>
 
     <dependencies>
@@ -31,5 +31,4 @@
         </dependency>
         <!-- END OF THIRD PARTY DEPENDENCIES -->
     </dependencies>
-
 </project>

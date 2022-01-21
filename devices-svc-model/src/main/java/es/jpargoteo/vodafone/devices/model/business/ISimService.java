@@ -16,7 +16,7 @@ public interface ISimService {
      * @param id - {@link UUID} of the Sim to be activated.
      * @return - An int object. 0 for successful execution, -1 for an unsuccessful execution.
      */
-    int activate(UUID id);
+    Sim activate(UUID id);
 
     /**
      * Method that given the id for a {@link Sim} blocks it.
@@ -24,7 +24,7 @@ public interface ISimService {
      * @param id - {@link UUID} of the Sim to be blocked.
      * @return - An int object. 0 for successful execution, -1 for an unsuccessful execution.
      */
-    int block(UUID id);
+    Sim block(UUID id);
 
     /**
      * Method that given the id for a {@link Sim} deactivates it.
@@ -32,7 +32,7 @@ public interface ISimService {
      * @param id - {@link UUID} of the Sim to be deactivated.
      * @return - An int object. 0 for successful execution, -1 for an unsuccessful execution.
      */
-    int deactivate(UUID id);
+    Sim deactivate(UUID id);
 
     /**
      * Method that given the id for a {@link Sim} sets it on waiting status for activation.
@@ -40,7 +40,7 @@ public interface ISimService {
      * @param id - {@link UUID} of the Sim to be set on waiting status.
      * @return - An int object. 0 for successful execution, -1 for an unsuccessful execution.
      */
-    int waitForActivation(UUID id);
+    Sim waitForActivation(UUID id);
 
     /**
      * Method that given a {@link Sim} persists it.
