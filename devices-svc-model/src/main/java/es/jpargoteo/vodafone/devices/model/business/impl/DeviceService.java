@@ -8,8 +8,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import java.util.UUID;
-
 /**
  * Implementation of the interface for managing the {@link Device} instances.
  */
@@ -28,7 +26,7 @@ public class DeviceService implements IDeviceService {
     @Override
     public Page<Device> allWaitingActivation(Pageable pageable) {
 
-        return deviceRepository.findAll(pageable);
+        return deviceRepository.allWaitingForActivation(pageable);
     }
 
     /**
@@ -37,14 +35,14 @@ public class DeviceService implements IDeviceService {
     @Override
     public Page<Device> allAvailable(Pageable pageable) {
 
-        return deviceRepository.findAll(pageable);
+        return deviceRepository.allAvailable(pageable);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Device removeConfiguration(UUID id) {
+    public Device removeConfiguration(Integer id) {
 
         Assert.notNull(id, "The given device id cannot be null.");
         Assert.isTrue(deviceRepository.existsById(id), "There should exist a Device for the given id.");
@@ -58,7 +56,7 @@ public class DeviceService implements IDeviceService {
      * {@inheritDoc}
      */
     @Override
-    public Device one(UUID id) {
+    public Device one(Integer id) {
 
         return deviceRepository.findById(id).orElse(null);
     }

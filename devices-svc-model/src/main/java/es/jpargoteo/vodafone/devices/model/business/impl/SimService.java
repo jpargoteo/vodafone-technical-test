@@ -30,7 +30,7 @@ public class SimService implements ISimService {
      * {@inheritDoc}
      */
     @Override
-    public Sim activate(UUID id) {
+    public Sim activate(Integer id) {
 
         Assert.notNull(id, "The given id cannot be null.");
         Assert.isTrue(simRepository.existsById(id), "There should exist a Sim for the given id.");
@@ -42,7 +42,7 @@ public class SimService implements ISimService {
      * {@inheritDoc}
      */
     @Override
-    public Sim block(UUID id) {
+    public Sim block(Integer id) {
 
         Assert.notNull(id, "The given id cannot be null.");
         Assert.isTrue(simRepository.existsById(id), "There should exist a Sim for the given id.");
@@ -54,7 +54,7 @@ public class SimService implements ISimService {
      * {@inheritDoc}
      */
     @Override
-    public Sim deactivate(UUID id) {
+    public Sim deactivate(Integer id) {
 
         Assert.notNull(id, "The given id cannot be null.");
         Assert.isTrue(simRepository.existsById(id), "There should exist a Sim for the given id.");
@@ -66,7 +66,7 @@ public class SimService implements ISimService {
      * {@inheritDoc}
      */
     @Override
-    public Sim waitForActivation(UUID id) {
+    public Sim waitForActivation(Integer id) {
 
         Assert.notNull(id, "The given id cannot be null.");
         Assert.isTrue(simRepository.existsById(id), "There should exist a Sim for the given id.");

@@ -2,6 +2,7 @@ package es.jpargoteo.vodafone.devices.model.domain;
 
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -11,17 +12,15 @@ import java.util.UUID;
  */
 @Data
 @Entity
+@Access(AccessType.PROPERTY)
 @Table(name = "DEVICE")
 public class Device {
 
     // Attributes
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator")
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "id", updatable = false, nullable = false)
-    private UUID id;
+    private int id;
     private Status status;
     private Double temperature;
 
