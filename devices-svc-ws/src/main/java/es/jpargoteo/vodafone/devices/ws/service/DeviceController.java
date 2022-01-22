@@ -73,9 +73,19 @@ public class DeviceController {
      * @return - The resultant device representation.
      */
     @PostMapping("/mng/devices/{id}/remove-configuration")
-    public ResponseEntity<DeviceModel> removeConfiguration(@PathVariable String id) {
+    public ResponseEntity<DeviceModel> removeConfiguration(@PathVariable Integer id) {
 
-        return ResponseEntity.ok(deviceAssembler.toModel(deviceService.removeConfiguration(Integer.getInteger(id))));
+        try {
+
+        return ResponseEntity.ok(deviceAssembler.toModel(deviceService.removeConfiguration(id)));
+
+        } catch (IllegalArgumentException e) {
+
+            return ResponseEntity.badRequest().build();
+        } catch (Exception e) {
+
+            return ResponseEntity.internalServerError().build();
+        }
     }
 
     /**
@@ -85,11 +95,11 @@ public class DeviceController {
      * @return - The resultant device representation.
      */
     @PostMapping("/mng/devices/{id}/sim/activate")
-    public ResponseEntity<DeviceModel> activateSim(@PathVariable String id) {
+    public ResponseEntity<DeviceModel> activateSim(@PathVariable Integer id) {
 
         try {
 
-            Device device = deviceService.one(Integer.getInteger(id));
+            Device device = deviceService.one(id);
 
             if (device != null && device.getSim() != null) {
 
@@ -119,11 +129,11 @@ public class DeviceController {
      * @return - The resultant device representation.
      */
     @PostMapping("/mng/devices/{id}/sim/deactivate")
-    public ResponseEntity<DeviceModel> deactivateSim(@PathVariable String id) {
+    public ResponseEntity<DeviceModel> deactivateSim(@PathVariable Integer id) {
 
         try {
 
-            Device device = deviceService.one(Integer.getInteger(id));
+            Device device = deviceService.one(id);
 
             if (device != null && device.getSim() != null) {
 
@@ -153,11 +163,11 @@ public class DeviceController {
      * @return - The resultant device representation.
      */
     @PostMapping("/mng/devices/{id}/sim/block")
-    public ResponseEntity<DeviceModel> blockSim(@PathVariable String id) {
+    public ResponseEntity<DeviceModel> blockSim(@PathVariable Integer id) {
 
         try {
 
-            Device device = deviceService.one(Integer.getInteger(id));
+            Device device = deviceService.one(id);
 
             if (device != null && device.getSim() != null) {
 
@@ -187,11 +197,11 @@ public class DeviceController {
      * @return - The resultant device representation.
      */
     @PostMapping("/mng/devices/{id}/sim/waiting-activation")
-    public ResponseEntity<DeviceModel> setWaitingActivationSim(@PathVariable String id) {
+    public ResponseEntity<DeviceModel> setWaitingActivationSim(@PathVariable Integer id) {
 
         try {
 
-            Device device = deviceService.one(Integer.getInteger(id));
+            Device device = deviceService.one(id);
 
             if (device != null && device.getSim() != null) {
 

@@ -1,5 +1,7 @@
 package es.jpargoteo.vodafone.devices.ws.service;
 
+import es.jpargoteo.vodafone.devices.api.dto.DeviceModel;
+import es.jpargoteo.vodafone.devices.api.dto.SimModel;
 import es.jpargoteo.vodafone.devices.boot.Application;
 import es.jpargoteo.vodafone.devices.model.business.impl.DeviceService;
 import es.jpargoteo.vodafone.devices.model.business.impl.SimService;
@@ -17,7 +19,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
@@ -35,10 +39,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(value = DeviceController.class)
 @ContextConfiguration(classes = {Application.class, DeviceController.class,
         DeviceAssembler.class, SimService.class, DeviceService.class})
+@EnableSpringDataWebSupport
 class DeviceControllerTest {
 
     @MockBean
     private DeviceService deviceService;
+
+    @MockBean
+    private DeviceAssembler deviceAssembler;
 
     @MockBean
     private SimService simService;
@@ -52,12 +60,13 @@ class DeviceControllerTest {
     private static String BASE_PATH = "http://localhost/devices";
     private static String MNG_BASE_PATH = "http://localhost/mng/devices";
 
-    Page<Device> devices;
+    private Page<Device> devices;
 
-    Device device;
+    private Device device;
 
-    Sim sim;
+    private DeviceModel deviceModel;
 
+    private Sim sim;
 
     @BeforeEach
     public void setup() {
@@ -65,14 +74,21 @@ class DeviceControllerTest {
         mockMvc = MockMvcBuilders.standaloneSetup(deviceController).build();
 
         initialize();
+
+        given(deviceAssembler.toModel(any(Device.class))).willReturn(deviceModel);
     }
 
     @Test
     void available_returns_ok() throws Exception {
 
-        given(deviceService.allAvailable(any(Pageable.class))).willReturn(devices);
+        mockMvc = MockMvcBuilders
+                .standaloneSetup(deviceController)
+                .setCustomArgumentResolvers(new PageableHandlerMethodArgumentResolver())
+                .build();
 
-        final ResultActions result = mockMvc.perform(get(BASE_PATH + "/available"));
+        given(deviceService.allAvailable(any(PageRequest.class))).willReturn(devices);
+
+        final ResultActions result = mockMvc.perform(get(BASE_PATH + "/available?page=1&size=10"));
 
         result.andExpect(status().is2xxSuccessful());
     }
@@ -80,9 +96,14 @@ class DeviceControllerTest {
     @Test
     void waitingActivation_returns_ok() throws Exception {
 
-        given(deviceService.allAvailable(any(Pageable.class))).willReturn(devices);
+        mockMvc = MockMvcBuilders
+                .standaloneSetup(deviceController)
+                .setCustomArgumentResolvers(new PageableHandlerMethodArgumentResolver())
+                .build();
 
-        final ResultActions result = mockMvc.perform(get(BASE_PATH + "/waiting-activation"));
+        given(deviceService.allAvailable(any(PageRequest.class))).willReturn(devices);
+
+        final ResultActions result = mockMvc.perform(get(BASE_PATH + "/waiting-activation?page=1&size=10"));
 
         result.andExpect(status().is2xxSuccessful());
     }
@@ -102,7 +123,7 @@ class DeviceControllerTest {
 
         given(deviceService.removeConfiguration(anyInt())).willThrow(new IllegalArgumentException());
 
-        final ResultActions result = mockMvc.perform(post(MNG_BASE_PATH + "/ /remove-configuration"));
+        final ResultActions result = mockMvc.perform(post(MNG_BASE_PATH + "/1234/remove-configuration"));
 
         result.andExpect(status().isBadRequest());
     }
@@ -265,6 +286,20 @@ class DeviceControllerTest {
         mockDevice.setStatus(Status.NOT_READY);
         mockDevice.setTemperature(25.00);
         mockDevice.setId(1234);
+
+        deviceModel = DeviceModel
+                .builder()
+                .id(String.valueOf(mockDevice.getId()))
+                .status(mockDevice.getStatus().toString())
+                .temperature(String.valueOf(mockDevice.getTemperature()))
+                .sim(SimModel
+                        .builder()
+                        .id(String.valueOf(mockSim.getId()))
+                        .countryName(mockSim.getCountryName())
+                        .status(mockSim.getStatus().toString())
+                        .operatorCode(mockSim.getOperatorCode())
+                        .build())
+                .build();
 
         device = mockDevice;
         devices = new PageImpl<>(Lists.newArrayList(mockDevice));
