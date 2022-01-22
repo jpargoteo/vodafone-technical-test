@@ -58,6 +58,8 @@ public class DeviceService implements IDeviceService {
     @Override
     public Device one(Integer id) {
 
+        Assert.notNull(id, "The given device id cannot be null.");
+
         return deviceRepository.findById(id).orElse(null);
     }
 

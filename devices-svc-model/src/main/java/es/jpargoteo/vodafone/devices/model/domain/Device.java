@@ -27,4 +27,5 @@ public class Device {
     // Relationships
     @OneToOne
     private Sim sim;
+
 }

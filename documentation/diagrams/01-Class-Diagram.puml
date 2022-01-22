@@ -3,15 +3,15 @@
 
 
 class Device {
-UUID id
+Integer id
 Sim simCard
 Status status
 Double temperature
 }
 
 class Sim {
-UUID id
-UUID operatorCode
+Integer id
+String operatorCode
 String countryName
 SimStatus status
 }
