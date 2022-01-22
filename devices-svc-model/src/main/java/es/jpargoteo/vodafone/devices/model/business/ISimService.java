@@ -3,8 +3,6 @@ package es.jpargoteo.vodafone.devices.model.business;
 
 import es.jpargoteo.vodafone.devices.model.domain.Sim;
 
-import java.util.UUID;
-
 /**
  * Interface that describes the access to instances of {@link Sim} class
  */
@@ -14,7 +12,7 @@ public interface ISimService {
      * Method that given the id for a {@link Sim} activates it.
      *
      * @param id - {@link Integer} of the Sim to be activated.
-     * @return - An int object. 0 for successful execution, -1 for an unsuccessful execution.
+     * @return - The activated sim.
      */
     Sim activate(Integer id);
 
@@ -22,7 +20,7 @@ public interface ISimService {
      * Method that given the id for a {@link Sim} blocks it.
      *
      * @param id - {@link Integer} of the Sim to be blocked.
-     * @return - An int object. 0 for successful execution, -1 for an unsuccessful execution.
+     * @return - The blocked sim.
      */
     Sim block(Integer id);
 
@@ -30,7 +28,7 @@ public interface ISimService {
      * Method that given the id for a {@link Sim} deactivates it.
      *
      * @param id - {@link Integer} of the Sim to be deactivated.
-     * @return - An int object. 0 for successful execution, -1 for an unsuccessful execution.
+     * @return - The deactivated sim.
      */
     Sim deactivate(Integer id);
 
@@ -38,7 +36,7 @@ public interface ISimService {
      * Method that given the id for a {@link Sim} sets it on waiting status for activation.
      *
      * @param id - {@link Integer} of the Sim to be set on waiting status.
-     * @return - An int object. 0 for successful execution, -1 for an unsuccessful execution.
+     * @return - The waiting sim.
      */
     Sim waitForActivation(Integer id);
 
