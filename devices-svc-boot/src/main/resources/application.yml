@@ -20,4 +20,4 @@ spring:
       ddl-auto: none
 logging:
   level:
-    root: INFO
+    root: DEBUG
