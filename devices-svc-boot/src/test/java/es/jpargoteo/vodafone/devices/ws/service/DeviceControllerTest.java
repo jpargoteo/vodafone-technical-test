@@ -285,7 +285,7 @@ class DeviceControllerTest {
         mockDevice.setSim(mockSim);
         mockDevice.setStatus(Status.NOT_READY);
         mockDevice.setTemperature(25.00);
-        mockDevice.setId(1234L);
+        mockDevice.setId(1234);
 
         deviceModel = DeviceModel
                 .builder()

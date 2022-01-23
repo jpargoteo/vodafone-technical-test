@@ -19,7 +19,7 @@ public class Sim {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "id", updatable = false, nullable = false)
-    private int id;
+    private Integer id;
     private String operatorCode;
     private String countryName;
     private SimStatus status;
