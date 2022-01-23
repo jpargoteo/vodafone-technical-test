@@ -3,6 +3,7 @@ package es.jpargoteo.vodafone.devices.model.business.impl;
 import es.jpargoteo.vodafone.devices.model.business.ISimService;
 import es.jpargoteo.vodafone.devices.model.domain.Sim;
 import es.jpargoteo.vodafone.devices.model.repository.SimRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -14,13 +15,14 @@ import java.util.UUID;
 @Service
 public class SimService implements ISimService {
 
-    private final SimRepository simRepository;
+    private SimRepository simRepository;
 
     /**
      * Constructor for instantiate a {@link SimService}.
      *
      * @param simRepository - {@link SimRepository} to be used for data access.
      */
+    @Autowired
     public SimService(SimRepository simRepository) {
         this.simRepository = simRepository;
     }

@@ -3,6 +3,8 @@ package es.jpargoteo.vodafone.devices.model.business.impl;
 import es.jpargoteo.vodafone.devices.model.business.IDeviceService;
 import es.jpargoteo.vodafone.devices.model.domain.Device;
 import es.jpargoteo.vodafone.devices.model.repository.DeviceRepository;
+import es.jpargoteo.vodafone.devices.model.repository.SimRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -14,8 +16,14 @@ import org.springframework.util.Assert;
 @Service
 public class DeviceService implements IDeviceService {
 
-    private final DeviceRepository deviceRepository;
+    private DeviceRepository deviceRepository;
 
+    /**
+     * Constructor for instantiate a {@link SimService}.
+     *
+     * @param deviceRepository - {@link DeviceRepository} to be used for data access.
+     */
+    @Autowired
     public DeviceService(DeviceRepository deviceRepository) {
         this.deviceRepository = deviceRepository;
     }

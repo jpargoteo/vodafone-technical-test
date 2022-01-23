@@ -114,7 +114,7 @@ class DeviceServiceTest {
         mockDevice.setSim(mockSim);
         mockDevice.setStatus(Status.NOT_READY);
         mockDevice.setTemperature(25.00);
-        mockDevice.setId(1234);
+        mockDevice.setId(1234L);
 
         device = mockDevice;
     }
